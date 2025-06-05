@@ -1,0 +1,15 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    Apology
+{% endblock %}
+
+{% block main %}
+    <div class="apologyContainer">
+        <p class="intro">
+            {{ apology }}
+        </p>
+        <a class="redirectButton" href="/question">back to question</a>
+    </div>
+
+{% endblock %}

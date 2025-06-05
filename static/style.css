@@ -1,0 +1,155 @@
+body{
+    background-color: #FEF9F2;
+    min-height: 100vh;
+    display:flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+img{
+    height:5rem;
+}
+
+header, footer{
+    display:flex;
+    justify-content: space-between;
+}
+
+main{
+    flex: 0.8;
+    font-family: "Julius Sans One", sans-serif;
+    color: #789DBC;
+    display:flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.title,.subtitle{
+    text-align: center;
+    margin-bottom: 1rem;
+}
+
+.introContainer{
+    flex: 0.6;
+    font-family: "Noto Serif SC", serif;
+    align-self: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+}
+
+.intro{
+    text-align: center;
+    line-height: 2.5;
+    margin:1rem;
+}
+
+.quiz{
+    flex: 0.8;
+    width:65%;
+    background-color: #F5F5F7;
+    font-family: "Noto Serif SC", serif;
+    align-self: center;
+    border: 1px dashed #EDDFE0;
+    display: flex;
+}
+
+#carouselExampleControlsNoTouching{
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.carousel-inner{
+    padding: 1rem;
+}
+
+.buttons{
+    display:flex;
+    justify-content: center;
+}
+
+.redirectButton,#submitButton,#prevButton,#nextButton{
+    font-family: "Julius Sans One", sans-serif;
+    color: #705C53;
+}
+
+.redirectButton{
+    text-decoration: none;
+    align-self: center;
+    border: 2px double #705C53;
+    padding: 3px;
+}
+
+#submitButton{
+    text-decoration: underline 1px;
+    background-color: unset;
+    font-weight: bold;
+    border: none;
+}
+
+#prevButton,#nextButton{
+    opacity: 0.7;
+    position: static;
+    font-style: italic;
+    text-decoration: underline 1px;
+}
+
+input[type="radio"]:checked {
+    background-color: #EDDFE0;
+    border-color: #EDDFE0;
+}
+
+input[type="radio"]:focus {
+    border-color: #EDDFE0;
+    outline: 0;
+    box-shadow: 0 0 0 .1rem #EDDFE0;
+}
+
+.resultContainer{
+    width: 65%;
+    font-family: "Noto Serif SC", serif;
+    align-self: center;
+}
+.answerContainer{
+    border: 1px dashed #EDDFE0;
+}
+
+.questionContainer{
+    margin-bottom: 3rem;
+    padding: 0rem 1rem;
+}
+
+.incorrect {
+    color: #B0C5A4;
+}
+
+.correct {
+    color: #D37676;
+}
+
+#textDisabled{
+    opacity: 1;
+}
+
+span{
+    text-decoration: underline 1px;
+    font-style: italic;
+}
+
+#ratioImg{
+    height:100%;
+    width: 100%;
+}
+
+figcaption{
+    font-size: 0.7rem;
+}
+
+.apologyContainer{
+    display: flex;
+    flex-direction: column;
+    flex: 0.8;
+    justify-content: space-around;
+}

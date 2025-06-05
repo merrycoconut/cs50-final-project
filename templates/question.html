@@ -1,0 +1,89 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    Question
+{% endblock %}
+
+{% block main %}
+    <form method="post" class="quiz" action="/result">
+        <div id="carouselExampleControlsNoTouching" class="carousel slide" data-bs-touch="false" data-bs-interval="false">
+                <div class="carousel-inner">
+                <!-- Show the first questions -->
+                    {% for question in questions %}
+                        {% if question.id == 1 %}
+                            <div class="carousel-item active" >
+                                <p class="quesionText">
+                                    {{ question.question_text }}
+                                </p>
+                <!-- show selections -->
+                                {% for selection in selections %}
+                                    {% if selection.question_id == question.id %}
+                                        <div class="form-check">
+                                            <input class="form-check-input" type="radio" name="answerID{{ question.id }}" id="{{ selection.id }}" value="{{ selection.id }}">
+                                            <label class="form-check-label" for="{{ selection.id }}">
+                                                {{ selection.answer_text }}
+                                            </label>
+                                        </div>
+                                    {% endif %}
+                                {% endfor %}
+                            </div>
+                        {% else %}
+                <!-- Show the other questions -->
+                            <div class="carousel-item">
+                                <p class="quesion">
+                                    {{ question.question_text }}
+                                </p>
+                <!-- show selections -->
+                                {% for selection in selections %}
+                                    {% if selection.question_id == question.id %}
+                                        <div class="form-check">
+                                            <input class="form-check-input" type="radio" name="answerID{{ question.id }}" id="{{ selection.id }}" value="{{ selection.id }}">
+                                            <label class="form-check-label" for="{{ selection.id }}">
+                                                {{ selection.answer_text }}
+                                            </label>
+                                        </div>
+                                    {% endif %}
+                                {% endfor %}
+                            </div>
+                        {% endif %}
+                    {% endfor %}
+                </div>
+            <!-- show buttons -->
+            <div class="buttons">
+                <button id="prevButton" class="carousel-control-prev" type="button" data-bs-target="#carouselExampleControlsNoTouching" data-bs-slide="prev">
+                    <span>&lt; Previous</span>
+                </button>
+                <button id="nextButton" class="carousel-control-next" type="button" data-bs-target="#carouselExampleControlsNoTouching" data-bs-slide="next">
+                    <span>Next &gt;</span>
+                </button>
+                <button id="submitButton" type="submit">Submit</button>
+            </div>
+        </div>
+    </form>
+    <script>
+        // Hide Previous button at the first slide and the submitButton at the last slide.
+        document.getElementById("prevButton").style.display = "none";
+        document.getElementById("submitButton").style.display = "none";
+
+        document.querySelector("#carouselExampleControlsNoTouching").addEventListener("slid.bs.carousel", function () {
+            var totalSlides = $('#carouselExampleControlsNoTouching .carousel-item').length;
+            var currentIndex = $("#carouselExampleControlsNoTouching .carousel-item.active").index();
+
+            // If the first slide, hide Previous button, else show.
+            if (currentIndex === 0) {
+                document.getElementById("prevButton").style.display = "none";
+            } else {
+                document.getElementById("prevButton").style.display = "block";
+            }
+
+            // If the last slide, hide Next button and show sumbit button.
+            if (currentIndex === totalSlides - 1) {
+                document.getElementById("nextButton").style.display = "none";
+                document.getElementById("submitButton").style.display = "block";
+            } else if(currentIndex !== totalSlides - 1){
+                document.getElementById("nextButton").style.display = "block";
+                document.getElementById("submitButton").style.display = "none";
+            }
+        });
+    </script>
+{% endblock %}

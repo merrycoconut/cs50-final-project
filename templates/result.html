@@ -1,0 +1,81 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    Result
+{% endblock %}
+
+{% block main %}
+    <div class="resultContainer">
+        <div>
+            <p class="intro">一组数据: 男婴与女婴的出生性别比（1980~2022年）</p>
+            <figure>
+                <img id="ratioImg" src=".././static/images/Sex ratio at birth (male births.jpg" alt="Sex ratio at birth (male births per female births)" />
+                <figcaption>
+                    （注）纵轴为世界及主要国家的出生男女比例（以女性为100时的男性数）。<br >
+                    （出处）根据世界银行公开数据（World Bank Open Data:
+                    <a href="https://data.worldbank.org/" style="color: #789DBC;">
+                        https://data.worldbank.org/
+                    </a>）制作.
+                </figcaption>
+              </figure>
+        </div>
+
+        <!-- show the answers -->
+        <div>
+            <p class="intro">她的真实</p>
+            <div class="answerContainer">
+                {% for question in questions %}
+                    <div class="questionContainer">
+                        <!-- Question Text -->
+                        <p>
+                            {{ question.question_text }}
+                        </p>
+                         <!-- Selections -->
+                        {% for selection in selections %}
+                            {% if selection.question_id == question.id %}
+                                <!-- if the selection is correct -->
+                                {% if selection.id == correct_answerIDs[question.id - 1] %}
+                                    <!-- change color to red -->
+                                    <div class="form-check correct">
+                                        <input class="form-check-input" type="radio" id="flexCheckDisabled" value="" disabled>
+                                        <label class="form-check-label" for="flexCheckDisabled" id="textDisabled">
+                                            {{ selection.answer_text }}
+                                        </label>
+                                        {% if selection.id == answerIDs[question.id - 1] %}
+                                            <span>Your Choice</span>
+                                            <span>&</span>
+                                         {% endif %}
+                                        <span>Her Truth</span>
+                                    </div>
+                                <!-- else if the selection is incorrect -->
+                                <!-- if selection is selected seletction -->
+                                {% else %}
+                                    {% if selection.id == answerIDs[question.id - 1] %}
+                                        <!-- change color to green -->
+                                        <div class="form-check incorrect">
+                                            <input class="form-check-input" type="radio" id="flexCheckDisabled" value="" disabled>
+                                            <label class="form-check-label" for="flexCheckDisabled" id="textDisabled">
+                                                {{ selection.answer_text }}
+                                            </label>
+                                            <span>Your choice</span>
+                                        </div>
+                                    {% else %}
+                                        <!-- do nothing -->
+                                        <div class="form-check">
+                                            <input class="form-check-input" type="radio" id="flexCheckDisabled" value="" disabled>
+                                            <label class="form-check-label" for="flexCheckDisabled" id="textDisabled">
+                                                {{ selection.answer_text }}
+                                            </label>
+                                        </div>
+                                    {% endif %}
+                                {% endif %}
+                            {% endif %}
+                        {% endfor %}
+                    </div>
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+
+
+{% endblock %}
